@@ -176,4 +176,9 @@ void Sq_Test ()
 
     if (n == 0)                           printf("Test 7 ok!\n");
     else                                  printf("Test 7 bad, expected n = 0, but n = %d!\n", n);
+    
+    n = SolveSq (2e-10, 5e-10, 2e-10, &x1, &x2);
+   
+    if (n == 2 && x1 == -2 && x2 == -0,5) printf("Test 8 ok!\n");
+    else                                  printf("Test 8 bad, expected n = 2, x = -2, x2 = -0,5, but n = %d, x1 = %d!\n, x2 = %d", n, x1, x2);
     }
