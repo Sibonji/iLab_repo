@@ -1,68 +1,90 @@
 /*
 
-0. Íàïå÷àòàòü:
-   - Êàê íàçûâàåòñÿ ïðîãðàììà
-   - ×òî äåëàåò
+0. ÃÃ Ã¯Ã¥Ã·Ã Ã²Ã Ã²Ã¼:
+   - ÃŠÃ Ãª Ã­Ã Ã§Ã»Ã¢Ã Ã¥Ã²Ã±Ã¿ Ã¯Ã°Ã®Ã£Ã°Ã Ã¬Ã¬Ã 
+   - Ã—Ã²Ã® Ã¤Ã¥Ã«Ã Ã¥Ã²
 
-   - Îáúÿñíèòü, ÷òî ââîäèòü äàëåå
+   - ÃŽÃ¡ÃºÃ¿Ã±Ã­Ã¨Ã²Ã¼, Ã·Ã²Ã® Ã¢Ã¢Ã®Ã¤Ã¨Ã²Ã¼ Ã¤Ã Ã«Ã¥Ã¥
 
-1. Ââåñòè êîýôôèöèåíòû êâàäðàòíîãî óðàâíåíèÿ ax^2+bx+c=0 (a, b, c)
+1. Ã‚Ã¢Ã¥Ã±Ã²Ã¨ ÃªÃ®Ã½Ã´Ã´Ã¨Ã¶Ã¨Ã¥Ã­Ã²Ã» ÃªÃ¢Ã Ã¤Ã°Ã Ã²Ã­Ã®Ã£Ã® Ã³Ã°Ã Ã¢Ã­Ã¥Ã­Ã¨Ã¿ ax^2+bx+c=0 (a, b, c)
 
-2. Ðàçîáðàòü âñå ñëó÷àè:
-   - Åñëè a == 0 & b == 0 & c == 0 ===> \infty êîðíåé
-   - Åñëè a == 0 & b == 0 & c != 0 ===> êîðíåé íåò
-   - Åñëè a == 0 & b != 0 ===> êîðåíü 1, x = -c / b
-   - Åñëè a != 0 ===> íàéäåì äèñêðèìèíàíò:
+2. ÃÃ Ã§Ã®Ã¡Ã°Ã Ã²Ã¼ Ã¢Ã±Ã¥ Ã±Ã«Ã³Ã·Ã Ã¨:
+   - Ã…Ã±Ã«Ã¨ a == 0 & b == 0 & c == 0 ===> \infty ÃªÃ®Ã°Ã­Ã¥Ã©
+   - Ã…Ã±Ã«Ã¨ a == 0 & b == 0 & c != 0 ===> ÃªÃ®Ã°Ã­Ã¥Ã© Ã­Ã¥Ã²
+   - Ã…Ã±Ã«Ã¨ a == 0 & b != 0 ===> ÃªÃ®Ã°Ã¥Ã­Ã¼ 1, x = -c / b
+   - Ã…Ã±Ã«Ã¨ a != 0 ===> Ã­Ã Ã©Ã¤Ã¥Ã¬ Ã¤Ã¨Ã±ÃªÃ°Ã¨Ã¬Ã¨Ã­Ã Ã­Ã²:
         - D = b^2 - 4ac:
-            - Åñëè D > 0 ===> êîðíåé 2, x = (-b + sqrt(D)) / 2a; x = (-b - sqrt(D)) / 2a
-            - Åñëè D = 0 ===> êîðåíü 1, x = -b / 2a
-            - Åñëè D < 0 ===> êîðíåé íåò
+            - Ã…Ã±Ã«Ã¨ D > 0 ===> ÃªÃ®Ã°Ã­Ã¥Ã© 2, x = (-b + sqrt(D)) / 2a; x = (-b - sqrt(D)) / 2a
+            - Ã…Ã±Ã«Ã¨ D = 0 ===> ÃªÃ®Ã°Ã¥Ã­Ã¼ 1, x = -b / 2a
+            - Ã…Ã±Ã«Ã¨ D < 0 ===> ÃªÃ®Ã°Ã­Ã¥Ã© Ã­Ã¥Ã²
 
 */
 #include <TXLib.h>
 #include <stdio.h>
 #include <math.h>
 
-int main()
+//-----------------------------------------------------------------------------------
+
+int  SolveSq (double a, double b, double c, double* x1, double* x2);
+int  Is_Zero (double* a, double* b, double* c);
+void Sq_Test();
+
+//-----------------------------------------------------------------------------------
+
+int main ()
     {
+    Sq_Test();
     printf("\n"
            "SolveSq - Solves a square equation\n\n"
-           "Enter coeffs a, b, c for equation ax^2+bx+c=0. Enter a: ");
+           "Enter coeffs a, b, c for equation ax^2+bx+c=0. Enter a, b, c: ");
 
-    double a = 0;
-    scanf("%lg", &a);
+    double a = 0, b = 0, c = 0, n = 0;
 
-    printf("                                               Enter b: ");
+    while (n = scanf("%lf %lf %lf", &a, &b, &c) != 3)
+        {
+        printf("Please enter three numbers and only numbers.   Enter a, b, c: \n");
 
-    double b = 0;
-    scanf("%lg", &b);
+        fflush(stdin);
+        }
 
-    printf("                                               Enter c: ");
+    Is_Zero (&a, &b, &c);
 
-    double c = 0;
-    scanf("%lg", &c);
+    double x1, x2;
+    int nRoots = SolveSq(a, b, c, &x1, &x2);
 
+    if (nRoots ==  0) printf("No roots!\n");
+    if (nRoots == -1) printf("Infinity roots!\n");
+    if (nRoots ==  1) printf("1 root x = %lg!\n", x1);
+    if (nRoots ==  2) printf("2 roots x1 = %lg, x2 = %lg!\n", x1, x2);
+
+    return 0;
+    }
+
+//-----------------------------------------------------------------------------------
+
+int SolveSq (double a, double b, double c, double* x1, double* x2)
+    {
     if (a == 0)
         {
-            if(b == 0)
+        if (b == 0)
+            {
+            if (c == 0)
                 {
-                if(c == 0)
-                    {
-                    printf("\\infty roots!\n");
-                    }
-
-                if(c != 0)
-                    {
-                    printf("No roots!\n");
-                    }
+                return 3;
                 }
 
-            if(b != 0)
+            if (c != 0)
                 {
-            double x = -c / b;
-
-            printf("1 root, x = %lg\n", x);
+                return 0;
                 }
+            }
+
+        if (b != 0)
+            {
+        *x1 = -c / b;
+
+        return 1;
+            }
         }
 
     if ( a!= 0)
@@ -71,23 +93,75 @@ int main()
 
         if(D > 0)
             {
-            double x1 = (-b - sqrt(D)) / (2 * a);
-            double x2 = (-b + sqrt(D)) / (2 * a);
+            *x1 = (-b - sqrt(D)) / (2 * a);
+            *x2 = (-b + sqrt(D)) / (2 * a);
 
-            printf("2 roots, x1 = %lg, x2 = %lg\n", x1, x2);
+            return 2;
             }
 
         if(D == 0)
             {
-            double x = -b / (2 * a);
+            *x1 = -b / (2 * a);
 
-            printf("1 root, x = %lg\n", x);
+            return 1;
             }
 
         if(D < 0)
             {
-            printf("No roots!\n");
+            return 0;
             }
         }
-    retutrn 0;
+    }
+
+//------------------------------------------------------------------------
+
+int Is_Zero (double* a, double* b, double* c)
+   {
+   while((*a < pow(10, -5) && *a > 0) || (*b < pow(10,-5) && *b > 0) || (*c < pow(10, -5) && *c > 0))
+        {
+        *a = *a * pow(10, 5);
+        *b = *b * pow(10, 5);
+        *c = *c * pow(10, 5);
+        }
+   }
+
+//------------------------------------------------------------------------
+void Sq_Test ()
+    {
+    double x1 = 0, x2 = 0, n = 0;
+
+    n = SolveSq (0, 0, 0, &x1, &x2);
+
+    if (n == 3)                           printf("Test 1 ok!\n");
+    else                                  printf("Test 1 bad, expected n = 3, but n = %d!\n", n);
+
+    n = SolveSq (1, 2, 1, &x1, &x2);
+
+    if (n == 1 && x1 == -1)               printf("Test 2 ok!\n");
+    else                                  printf("Test 2 bad, expected n = 1, x = -1, but n = %d, x = %d!\n", n, x1);
+
+    n = SolveSq (0, 0, 1, &x1, &x2);
+
+    if (n == 0)                           printf("Test 3 ok!\n");
+    else                                  printf("Test 3 bad, expected n = 0, but n = %d!\n", n);
+
+    n = SolveSq (0, 1, 1, &x1, &x2);
+
+    if (n == 1 && x1 == -1)               printf("Test 4 ok!\n");
+    else                                  printf("Test 4 bad, expected n = 1, x = -1, but n = %d, x = %d!\n", n, x1);
+
+    n = SolveSq (1, 0, -1, &x1, &x2);
+
+    if (n == 2 && x1 == -1 && x2 == 1)    printf("Test 5 ok!\n");
+    else                                  printf("Test 5 bad, expected n = 2, x = -1, x2 = 1, but n = %d, x1 = %d!\n, x2 = %d", n, x1, x2);
+
+    n = SolveSq (2, 5, 2, &x1, &x2);
+
+    if (n == 2 && x1 == -2 && x2 == -0,5) printf("Test 6 ok!\n");
+    else                                  printf("Test 6 bad, expected n = 2, x = -2, x2 = -0,5, but n = %d, x1 = %d!\n, x2 = %d", n, x1, x2);
+
+    n = SolveSq (1, 1, 1, &x1, &x2);
+
+    if (n == 0)                           printf("Test 7 ok!\n");
+    else                                  printf("Test 7 bad, expected n = 0, but n = %d!\n", n);
     }
