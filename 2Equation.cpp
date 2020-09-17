@@ -59,8 +59,6 @@ int main ()
         fflush(stdin);
         }
 
-    Is_Zero (&a, &b, &c);
-
     double x1, x2;
     int nRoots = SolveSq(a, b, c, &x1, &x2);
 
@@ -76,6 +74,8 @@ int main ()
 
 int SolveSq (double a, double b, double c, double* x1, double* x2)
     {
+    Is_Zero (&a, &b, &c);
+   
     if (a == 0)
         {
         if (b == 0)
