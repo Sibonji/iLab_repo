@@ -52,10 +52,10 @@ int main ()
 
 int symbcount ()
     {
-    struct stat buff;
-    int stat ("text.txt", &buff);
+    struct stat buf;
+    stat ("text.txt", &buf);
 
-    return buff.st_size;
+    return buf.st_size;
     }
 
 int strcount (char *text, int symb_quantity)
