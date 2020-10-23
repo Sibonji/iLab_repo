@@ -139,6 +139,8 @@ int strcount (char *text, int symb_quantity)
 	    if ((text[i] == '\n' || text[i] == '\0') && text[i - 1] != '\n' && text[i - 1] != '\0')
 	        {
 	        ++str_quantity;
+		    
+		text[i] = '\n';
 	        }
 
         if ((text[i] == '\n' || text[i] == '\0') && (text[i - 1] == '\n' || text[i - 1] == '\0'))
