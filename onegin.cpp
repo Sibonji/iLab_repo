@@ -110,7 +110,7 @@ int main ()
         return -1;
         }
 
-    if((fread (text, sizeof(char), symb_quantity, txt)) == all_symb)
+    if((fread (text, sizeof(char), symb_quantity, txt)) != all_symb)
         {
         printf("Programm couldn't read text from file\nProgramm: %s \nLine: %d\n", __FILE__, __LINE__);
 
